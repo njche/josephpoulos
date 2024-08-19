@@ -1,0 +1,14 @@
+.slide-wrapper-up article * {
+    color: white !important;
+    text-decoration-color: white;
+    pointer-events: none;
+}
+
+article iframe {
+    display: none;
+}
+
+article blockquote {
+    display: none;
+    border-left: 2px solid white;
+}

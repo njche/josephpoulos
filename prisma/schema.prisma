@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Secret {
+  secret String @unique
+}
+
+model Post {
+  id         Int       @id @default(autoincrement())
+  title      String
+  createdAt  DateTime  @default(now()) @db.Timestamp(6)
+  views      Int
+  author     String
+  categories String[]
+  date       String
+  image      String
+  imageAlt   String
+  imageTag   String
+  markdown   String
+  mdHtml     String
+  mdChopped  String
+  slug       String    @unique
+  synopsis   String
+  comments   Comment[]
+}
+
+model Comment {
+  id           Int      @id @default(autoincrement())
+  name         String   @db.VarChar(40)
+  content      String
+  createdAt    DateTime @default(now()) @db.Timestamp(6)
+  postId       Int
+  articleTitle String
+  post         Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  replies      Reply[]  
+}
+
+model Reply {
+  id           Int      @id @default(autoincrement())
+  postId       Int
+  commentId    Int
+  name         String   @db.VarChar(40)
+  content      String
+  createdAt    DateTime @default(now()) @db.Timestamp(6)
+  articleTitle String
+  replyId      Int
+  comment      Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
+}

@@ -1,0 +1,15 @@
+.slide-wrapper article * {
+    color: black;
+    text-decoration-color: white;
+    pointer-events: none;
+}
+
+.slide-wrapper.selected .slide-content article * {
+    mix-blend-mode: multiply;
+    color: white;
+}
+
+a {
+    color: unset;
+    text-decoration: none;
+}
