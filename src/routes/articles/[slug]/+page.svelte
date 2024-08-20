@@ -44,16 +44,6 @@
         <div>
             <div>
                 <Content data={data.article}/>
-                <iframe 
-                    title="facebook like"
-                    src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Flocalhost%3A5173%2Farticles%2F&{data.article?.slug}%2F&width=450&layout&action&size&share=false&height=35&appId" 
-                    width="450" 
-                    height="35" 
-                    style="border:none; overflow:hidden" 
-                    scrolling="no" 
-                    frameborder="0" 
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen"
-                />           
             </div>
             <div>
                 <Sidebar data={data.article}/>
@@ -72,16 +62,6 @@
         </div>
         <div>
             <Content data={data.article}/>
-            <!-- <iframe 
-                title="facebook like"
-                src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Flocalhost%3A5173%2Farticles%2F&{data.article?.slug}%2F&width=450&layout&action&size&share=false&height=35&appId" 
-                width="450" 
-                height="35" 
-                style="border:none; overflow:hidden" 
-                scrolling="no" 
-                frameborder="0" 
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen"
-            /> -->
             <Comments comments={data.comments} replies={data.replies} title={data.article?.title} />
         </div>
         <div>
