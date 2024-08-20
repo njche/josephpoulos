@@ -154,6 +154,15 @@ function adminSubmitReady() {
 	}
 }
 
+function loading() {
+	const { subscribe, set } = writable(false)
+
+	return {
+		subscribe,
+		set: (bool: boolean) => set(bool),
+	}
+}
+
 
 export const isThisNew = createOrEdit()
 export const editArticle = modifyArticle()
@@ -170,3 +179,4 @@ export const selectedSlide = selectSlide()
 export const selectedSlideRow = selectSlideRow()
 export const showAdminModal = adminModal()
 export const adminDeleteReady = adminSubmitReady()
+export const isLoading = loading()

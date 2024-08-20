@@ -1,17 +1,16 @@
 <script>
     import { afterNavigate, beforeNavigate } from "$app/navigation";
     import Loading from "$lib/components/Loading.svelte";
-
-    let loading = false
+    import { isLoading } from "$lib/utils/stores";
 
     beforeNavigate(() => {
-        loading = true
+        isLoading.set(true)
     })
 
     afterNavigate(() => {
-        loading = false
+        isLoading.set(false)
     })
 </script>
 
-<Loading {loading} />
+<Loading loading={$isLoading} />
 <slot />

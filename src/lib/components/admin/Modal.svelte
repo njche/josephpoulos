@@ -1,6 +1,6 @@
 <script lang="ts">
     import { enhance } from "$app/forms";
-    import { showAdminModal, adminDeleteReady } from "$lib/utils/stores";
+    import { showAdminModal, adminDeleteReady, isLoading } from "$lib/utils/stores";
     export let message: string
     export let formDetails: { action: string, id: number, element: string }
     let submitter: HTMLButtonElement
@@ -8,8 +8,10 @@
 
 {#if $showAdminModal}
     <form method="POST" action={formDetails.action} use:enhance={() => {
+        isLoading.set(true)
         showAdminModal.set(false)
         return ({ result, update }) => {
+            isLoading.set(false)
             if (result.type === 'success') {
                 update({ reset: true })
                 if (formDetails.action === '?/deleteComment') {

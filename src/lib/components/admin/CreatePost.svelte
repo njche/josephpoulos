@@ -10,7 +10,10 @@
         selected, 
         selectedImage, 
         imageName,
-        imageTag
+        imageTag,
+
+        isLoading
+
     } from '$lib/utils/stores'
     import { applyAction, enhance } from '$app/forms'
     import { invalidateAll } from '$app/navigation';
@@ -86,39 +89,46 @@
             </div>
         </div>
     {/if}
-        <form method="POST" action={$isThisNew ? '?/create' : '?/modify'} enctype="multipart/form-data" use:enhance={({ cancel }) => {
-        if (!image) {
-            error = true
-            errorMessage = 'You must choose a cover image.'
-            return cancel()
-        }
-        return async ({ result, update }) => {
-            applyAction(result)
-            invalidateAll()
-            if (result.type === 'success') {
-                if (result.data?.success) {
-                    editTitle.placehold()
-                    editSynopsis.placehold()
-                    editCategories.set([])
-                    editMarkdown.placehold()
-                    selected.placehold()
-                    imageName.placehold()
-                    selectedImage.placehold()
-                    imageTag.placehold()
-                    input.value = ''
-                    isThisNew.reset()
-                    update({ reset: true })
-                } else {
-                    errorMessage = String(result.data?.message)
+        <form 
+            method="POST" 
+            action={$isThisNew ? '?/create' : '?/modify'} 
+            enctype="multipart/form-data" 
+            use:enhance={({ cancel }) => {
+                isLoading.set(true)
+                if (!image) {
                     error = true
-                    update({ reset: false })
+                    errorMessage = 'You must choose a cover image.'
+                    isLoading.set(false)
+                    return cancel()
                 }
-            } else {
-                update({ reset: false })
-            }
-        };
-    }}
-    >
+                return async ({ result, update }) => {
+                    applyAction(result)
+                    invalidateAll()
+                    isLoading.set(false)
+                    if (result.type === 'success') {
+                        if (result.data?.success) {
+                            editTitle.placehold()
+                            editSynopsis.placehold()
+                            editCategories.set([])
+                            editMarkdown.placehold()
+                            selected.placehold()
+                            imageName.placehold()
+                            selectedImage.placehold()
+                            imageTag.placehold()
+                            input.value = ''
+                            isThisNew.reset()
+                            update({ reset: true })
+                        } else {
+                            errorMessage = String(result.data?.message)
+                            error = true
+                            update({ reset: false })
+                        }
+                    } else {
+                        update({ reset: false })
+                    }
+                };
+            }}
+        >
         <div class="form-container" 
             style="
                 --height: {height - 300}px;

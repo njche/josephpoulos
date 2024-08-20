@@ -1,5 +1,5 @@
-<script>
-    export let loading
+<script lang="ts">
+    export let loading: boolean
 </script>
 
 <div class="loading" style:opacity={loading ? '1' : '0'}>
@@ -37,9 +37,12 @@
     .loading {
         display: flex;
         flex-direction: row;
-        position: absolute;
+        position: sticky;
         top: 50%;
         left: 50%;
+        z-index: 999999;
+        pointer-events: none;
+        cursor: none;
     }
 
     .circle {

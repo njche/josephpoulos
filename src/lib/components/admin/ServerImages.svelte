@@ -62,6 +62,7 @@
         font-variant-caps: all-petite-caps;
         background-color: transparent;
         border: 1px solid grey;
+        cursor: pointer;
     }
 
     ul {

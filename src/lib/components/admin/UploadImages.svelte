@@ -1,5 +1,6 @@
 <script lang="ts">
     import { enhance } from "$app/forms";
+    import { isLoading } from "$lib/utils/stores";
     import ServerImages from "./ServerImages.svelte";
     let images: Array<File> = []
     let files: FileList | null | undefined
@@ -39,7 +40,10 @@
             cancel()
         }
 
+        isLoading.set(true)
+
         return async ({ result, update }) => {
+            isLoading.set(false)
             if (result.type === 'success') {
                 console.log(result)
                 images = []
@@ -50,25 +54,31 @@
     }}
 >   
     <ServerImages />
-    <p>
-        All images will be saved as a .webp file
-    </p>
-        <label for="images" form="file-list">
-            <img src="/upload.png" alt="">
-            <input 
-                class="file" 
-                type="file"
-                name="image"
-                form="file-list"
-                id="images" 
-                accept="image/png, image/jpeg, image/webp, image/gif"
-                multiple
-                hidden
-                bind:files={files}
-                on:change={(e) => {
-                    imageUpload(e)
-                }}
-            >
+    <div 
+        style:display={'flex'}
+        style:flex-direction={'column'}
+        style:align-items={'center'}
+    >
+        <p>
+            All images will be saved as a .webp file
+        </p>
+            <label for="images" form="file-list">
+                <img src="/upload.png" alt="">
+                <input 
+                    class="file" 
+                    type="file"
+                    name="image"
+                    form="file-list"
+                    id="images" 
+                    accept="image/png, image/jpeg, image/webp, image/gif"
+                    multiple
+                    hidden
+                    bind:files={files}
+                    on:change={(e) => {
+                        imageUpload(e)
+                    }}
+                >
+            </label>
             <ul>
                 {#if files}
                     <div 
@@ -101,10 +111,10 @@
                     </p>
                 {/if}
             </ul>
-        </label>
-    <button type="submit">
-        Upload
-    </button>
+        <button type="submit">
+            Upload
+        </button>
+    </div>
 </form>
 
 <style>
@@ -119,10 +129,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: space-between;
         padding: 8px;
         height: 100%;
         width: 100%;
+    }
+
+    button {
+        cursor: pointer;
     }
 
     label {
@@ -130,6 +144,7 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
+        cursor: pointer;
     }
 
     label img {
@@ -175,7 +190,7 @@
         margin-left: 40px;
     }
 
-    label h5, p {
+    div p {
         padding-left: 16px;
     }
 </style>
