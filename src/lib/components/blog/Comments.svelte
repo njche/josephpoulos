@@ -1,5 +1,6 @@
 <script lang="ts">
     import { enhance } from "$app/forms";
+    import { PUBLIC_TURNSTILE_SITE_KEY } from "$env/static/public";
     import { afterUpdate, onMount } from "svelte";
     export let comments
     export let replies
@@ -50,7 +51,7 @@
     
     const onComment = async () => {
         authComment = await turnstile.render('#comment', {
-            sitekey: '0x4AAAAAAAM2-VFEiO9tDtUR',
+            sitekey: PUBLIC_TURNSTILE_SITE_KEY,
             callback: async function(token: string) {
                 console.log(`Challenge Success Comment`)
                 console.log(authComment)
@@ -60,7 +61,7 @@
 
     const onReply = async () => {
         authReply = await turnstile.render('#reply', {
-            sitekey: '0x4AAAAAAAM2-VFEiO9tDtUR',
+            sitekey: PUBLIC_TURNSTILE_SITE_KEY,
             callback: async function() {
                 console.log(`Challenge Success Reply`)
             },
@@ -106,7 +107,7 @@
             <div class="square-1" />
             <div class="square-2" />
             </div>
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAAAM2-VFEiO9tDtUR" data-callback="onComment" />
+            <div class="cf-turnstile" data-sitekey={PUBLIC_TURNSTILE_SITE_KEY} data-callback="onComment" />
             <button disabled={modal ? true : false} style:background-color={modal ? 'grey' : 'black'}>
                 Post Comment
             </button>
@@ -170,7 +171,7 @@
                                     <div class="square-1" />
                                     <div class="square-2" />
                                 </div>
-                                <div class="cf-turnstile" data-sitekey="0x4AAAAAAAM2-VFEiO9tDtUR" data-callback="onReply" />
+                                <div class="cf-turnstile" data-sitekey={PUBLIC_TURNSTILE_SITE_KEY} data-callback="onReply" />
                                 <button disabled={modal ? true : false} style:background-color={modal ? 'grey' : 'black'}>
                                     Post Reply
                                 </button>
@@ -266,7 +267,7 @@
                                                 <div class="square-1" />
                                                 <div class="square-2" />
                                             </div>
-                                            <div class="cf-turnstile" data-sitekey="0x4AAAAAAAM2-VFEiO9tDtUR" data-callback="onReply" />
+                                            <div class="cf-turnstile" data-sitekey={PUBLIC_TURNSTILE_SITE_KEY} data-callback="onReply" />
                                             <button disabled={modal ? true : false} style:background-color={modal ? 'grey' : 'black'}>
                                                 Post Reply
                                             </button>
