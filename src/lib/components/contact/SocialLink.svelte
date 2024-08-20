@@ -158,6 +158,10 @@
         font-variant: all-small-caps;
         letter-spacing: 2px;
     }
+
+    .copied p {
+        text-decoration: none;
+    }
     
     @media only screen and (max-width: 700px) {
         .link {
