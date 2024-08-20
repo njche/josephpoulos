@@ -35,6 +35,7 @@
     }
 
     .loading {
+        height: 0px;
         display: flex;
         flex-direction: row;
         position: sticky;
