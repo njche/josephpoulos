@@ -34,6 +34,7 @@
                     <a 
                         data-sveltekit-preload-data="tap"
                         href="/articles/{article.slug}/"
+                        target="_blank"
                     >
                         {article.title}
                     </a>
