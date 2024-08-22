@@ -1,17 +1,13 @@
-<footer>
+<!-- <footer>
     <p>
         website by 
         <a href="http://train.michael-marvin.com">
                 michael-marvin.com
         </a>
     </p>
-</footer>
+</footer> -->
 
 <style>
-    @keyframes name {
-        
-    }
-
     footer {
         display: flex;
         font-family: monospace;
