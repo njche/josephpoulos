@@ -1,6 +1,5 @@
 <script lang="ts">
     import { PUBLIC_SERVER_URL } from "$env/static/public";
-    import { afterUpdate, onMount } from "svelte";
 
     let data: {
         result: string[]
@@ -10,13 +9,9 @@
     
     const handleClick = async () => {
         showImages = !showImages
+        data = await (await fetch(`${PUBLIC_SERVER_URL}/images`)).json()
     }
-    
-    afterUpdate(async () => {
-        if (showImages) {
-            data = await (await fetch(`${PUBLIC_SERVER_URL}/images`)).json()
-        }
-    })
+
 </script>
 
 <div class="server-images">
