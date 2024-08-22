@@ -9,7 +9,9 @@
     
     const handleClick = async () => {
         showImages = !showImages
-        data = await (await fetch(`${PUBLIC_SERVER_URL}/images`)).json()
+        if (showImages) {
+            data = await (await fetch(`${PUBLIC_SERVER_URL}/images`)).json()
+        }
     }
 
 </script>
