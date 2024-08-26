@@ -15,7 +15,6 @@
     let contentHeight: number
     let mount = false
     const onLoad = async () => {
-        console.log('fire')
             fetch(`/api/articles/${$page.data.article.slug}`, {
                 method: 'POST'
             });
