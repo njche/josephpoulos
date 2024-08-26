@@ -45,13 +45,13 @@
         Articles and writings covering culture topics such as: 
         sports, movies, books, reviews, lifestyle and various musings
     "/>
-    <meta property="og:image" content={`${$page.url.origin}/author.png`} />
+    <meta property="og:image" content={`${$page.url.origin}/author.webp`} />
 	<meta name="twitter:title" content="Articles - Joseph Poulos"/>
 	<meta name="twitter:description" content="
         Articles and writings covering culture topics such as: 
         sports, movies, books, reviews, lifestyle and various musings
     " />
-	<meta name="twitter:image" content={`${$page.url.origin}/author.png`} />
+	<meta name="twitter:image" content={`${$page.url.origin}/author.webp`} />
 </svelte:head>
     <div class="blog-index-container">
         <div class="search">

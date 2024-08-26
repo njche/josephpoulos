@@ -227,6 +227,7 @@
         </div>
     </form>
 {/if}
+
 <style>
     a {
         color: black;

@@ -2,6 +2,7 @@
     import { selectedSlide } from '$lib/utils/stores.js';
     import Slides from '$lib/components/landing/Slides.svelte';
     import { onMount } from 'svelte';
+    import { page } from '$app/stores';
     export let data
 
     let height: number
@@ -72,10 +73,15 @@
 		data-key="description"
 		property="og:description"
 		name="description"
-		content="Writer, bookworm, and NBA fan"
+		content="
+            Joseph Poulos is a writer from Grand Rapids, Michigan. 
+            He has published over 140 articles on various subjects including: television, film, video games, literature, history and general news. 
+            In 2021, he served as the Feature Editor for Grand Rapids Community College's student newspaper, The Collegiate. 
+            In 2022, he served as the Editor-in-Chief for the same publication.
+        "
 	/>
-	<meta property="og:image" content="http:localhost:5173/author.png" />
-	<meta name="twitter:image" content="http:localhost:5173/author.png" />
+	<meta property="og:image" content={`${$page.url.origin}/author.webp`} />
+	<meta name="twitter:image" content={`${$page.url.origin}/author.webp`} />
 </svelte:head>
 {#if mounted}
     <div 

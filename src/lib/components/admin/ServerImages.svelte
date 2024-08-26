@@ -13,7 +13,7 @@
             data = await (await fetch(`${PUBLIC_SERVER_URL}/images`)).json()
         }
     }
-
+    
 </script>
 
 <div class="server-images">

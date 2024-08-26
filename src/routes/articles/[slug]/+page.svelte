@@ -25,7 +25,7 @@
     })
 </script>
 
-<svelte:window on:load|once={onLoad()} bind:innerHeight={windowInnerHeight} bind:innerWidth={windowInnerWidth}/>
+<svelte:window on:load|once={onLoad} bind:innerHeight={windowInnerHeight} bind:innerWidth={windowInnerWidth}/>
 <svelte:head>
     <title>{data.article?.title} - Joseph Poulos</title>
 	<meta data-key="description" name="description" content="{data.article?.synopsis}">
