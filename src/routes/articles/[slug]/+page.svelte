@@ -15,17 +15,19 @@
     let contentHeight: number
     let mount = false
     const onLoad = async () => {
+        console.log('fire')
             fetch(`/api/articles/${$page.data.article.slug}`, {
                 method: 'POST'
             });
         }
         
-    onMount(() => {
+    onMount(async () => {
         mount = true
+        await onLoad()
     })
 </script>
 
-<svelte:window on:load|once={onLoad} bind:innerHeight={windowInnerHeight} bind:innerWidth={windowInnerWidth}/>
+<svelte:window bind:innerHeight={windowInnerHeight} bind:innerWidth={windowInnerWidth}/>
 <svelte:head>
     <title>{data.article?.title} - Joseph Poulos</title>
 	<meta data-key="description" name="description" content="{data.article?.synopsis}">
